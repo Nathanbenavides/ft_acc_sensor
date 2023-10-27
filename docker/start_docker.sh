@@ -86,17 +86,6 @@ if [ "${MODE}" != "connect" ]; then
     # Other
     FWD_ARGS+=("--privileged")
     
-    #Add volume
-    
-    
-    docker volume rm robetarme_record_ws
-    docker volume create --driver local \
-    --opt type="none" \
-    --opt device="${PWD}/../src/robetarme_record_ws" \
-    --opt o="bind" \
-    "runningFolder"
-    
-    FWD_ARGS+=(--volume="runningFolder:/home/ros/robetarme_record_ws:rw")
 
     
 fi
@@ -113,5 +102,4 @@ aica-docker \
     "${IMAGE_NAME}" \
     -u "${USERNAME}" \
     -n "${CONTAINER_NAME}" \
-    ${GPU_FLAG} \
     "${FWD_ARGS[@]}" \

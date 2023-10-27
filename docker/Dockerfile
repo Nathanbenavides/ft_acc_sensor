@@ -71,7 +71,7 @@ RUN git clone --recurse-submodules https://bitbucket.org/lpresearch/openzenros.g
 # Install workspace
 WORKDIR /home/${USER}
 RUN git clone https://github.com/Nathanbenavides/ft_acc_sensor.git
-RUN cp -r ft_acc_sensor/src ros_ws/src
+RUN cp -r ft_acc_sensor/src/* ros_ws/src
 RUN rm -rf ft_acc_sensor
 
 
@@ -90,7 +90,7 @@ RUN if [ "${USE_SIMD}" = "ON" ] ; \
 WORKDIR /home/${USER}/ros_ws
 RUN source /opt/ros/noetic/setup.bash && rosdep install --from-paths src --ignore-src -r -y
 RUN pushd src/xsens_ros_mti_driver/lib/xspublic && make && popd
-#RUN source /opt/ros/noetic/setup.bash  && catkin_make -DZEN_BLUETOOTH=ON;
+RUN source /opt/ros/noetic/setup.bash  && catkin_make -DZEN_BLUETOOTH=ON;
 
 ### Final apt clean
 RUN sudo apt update && sudo apt upgrade && sudo apt clean

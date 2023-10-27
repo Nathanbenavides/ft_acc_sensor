@@ -1,5 +1,5 @@
 
-\#!/bin/bash
+#!/bin/bash
 
 # Name and base and options
 IMAGE_NAME=nathan/ft_imu                        # Chose any name for your image (but make sure to report it in start_docker)
