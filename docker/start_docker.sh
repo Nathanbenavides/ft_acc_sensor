@@ -86,6 +86,15 @@ if [ "${MODE}" != "connect" ]; then
     # Other
     FWD_ARGS+=("--privileged")
     
+    # Add volume data/
+    docker volume rm data
+    docker volume create --driver local \
+    --opt type="none" \
+    --opt device="${PWD}/../data" \
+    --opt o="bind" \
+    "data"
+
+    FWD_ARGS+=(--volume="data:/home/ros/ros_ws/data:rw")
 
     
 fi
